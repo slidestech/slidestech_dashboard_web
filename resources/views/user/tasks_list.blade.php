@@ -233,8 +233,8 @@
                             <div class="input-group input-group-inverse">
                                 <select id="f-status" class="selectpicker show-tick text-center" title="Select status.."
                                     data-width="100%" data-style="btn-default">
-                                    <option value="PENDING">PENDING</option>
-                                    <option value="COMPLETED">COMPLETED</option>
+                                    {{-- <option value="PENDING">PENDING</option>
+                                    <option value="COMPLETED">COMPLETED</option> --}}
 
                                 </select>
 
@@ -264,14 +264,14 @@
                         <ul class="list-unstyled card-option">
                             <!-- <li v-on:click="calculate_fees_for_all();
                         ">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span >
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                data-placement="top" data-original-title="Decomptes" style="font-size:22px"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                v-on:click="calculate_fees_for_all();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    data-placement="top" data-original-title="Decomptes" style="font-size:22px"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    v-on:click="calculate_fees_for_all();
                                     ">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li> -->
                             <li v-on:click="operation='add';modal_title='Add task';
                         clearInputs()">
                                 <span data-toggle="modal" data-target="#task-modal">
@@ -349,12 +349,12 @@
                                         @{{ reFormatDate(task.end_date) }}
                                     </td>
                                     <td class="text-center f-16" style="vertical-align:middle">
-                                        <span v-if=" task.status.toUpperCase()  == 'PENDING'"
-                                            class="label label-warning">@{{ task.status.toUpperCase() }}</span>
+                                        <span
+                                            :class="[task.status.toUpperCase() == 'PENDING' ? 'label label-warning' :
+                                                'label label-success'
+                                            ]">@{{ task.status.toUpperCase() }}</span>
 
-                                        <span class="label label-success"
-                                            v-else=" task.status.toUpperCase()  == 'COMPLETED'">
-                                            @{{ task.status.toUpperCase() }} </span>
+
                                     </td>
 
 
@@ -1017,10 +1017,12 @@
                                 var column = this;
 
                                 column.data().unique().sort().each(function(d, j) {
-                                    $('#f-status').append('<option value="' +
-                                        d +
+                                    str = d.split('">');
+                                    $('#f-status').append('<option value="' + str[1]
+                                        .replace('</span>', '') +
                                         '">' +
-                                        d + '</option>')
+                                        str[1].replace('</span>', '') +
+                                        '</option>')
                                 });
                             });
 
@@ -1230,6 +1232,7 @@
                             $('#task-modal').modal('hide');
                             notify('Succès', response.data.success, 'green', 'topCenter', 'bounceInDown');
                             $('#f-users').selectpicker('refresh');
+                            $('#f-status').selectpicker('refresh');
                             app.fill_table('/getTasks', 'tasks-table');
                             app.clearInputs();
                             console.log(response.data.m);
@@ -1289,6 +1292,7 @@
 
                             $('#task-modal').modal('hide');
                             notify('Success', response.data.success, 'green', 'topCenter', 'bounceInDown');
+                            $('#f-status').selectpicker('refresh');
                             app.fill_table('/getTasks', 'tasks-table');
                             app.clearInputs();
 

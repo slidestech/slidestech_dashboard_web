@@ -264,14 +264,14 @@
                         <ul class="list-unstyled card-option">
                             <!-- <li v-on:click="calculate_fees_for_all();
                         ">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span >
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        data-placement="top" data-original-title="Decomptes" style="font-size:22px"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        v-on:click="calculate_fees_for_all();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                data-placement="top" data-original-title="Decomptes" style="font-size:22px"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                v-on:click="calculate_fees_for_all();
                                     ">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li> -->
                             <li v-on:click="operation='add';modal_title='Add task';
                         clearInputs()">
                                 <span data-toggle="modal" data-target="#task-modal">
@@ -1255,6 +1255,12 @@
                             $('#task-modal').modal('hide');
                             notify('Succès', response.data.success, 'green', 'topCenter', 'bounceInDown');
                             $('#f-users').selectpicker('refresh');
+                            $('#f-status').selectpicker('destroy');
+
+                            // Rebuild the selectpicker element with new options
+                            $('#f-status').selectpicker({
+                                // Add your options here
+                            });
                             app.fill_table('/getTasks', 'tasks-table');
                             app.clearInputs();
                             console.log(response.data.m);
@@ -1313,6 +1319,8 @@
                         .then(function(response) {
 
                             $('#task-modal').modal('hide');
+                            $('#f-users').selectpicker('refresh');
+                            $('#f-status').selectpicker('refresh');
                             notify('Success', response.data.success, 'green', 'topCenter', 'bounceInDown');
                             app.fill_table('/getTasks', 'tasks-table');
                             app.clearInputs();
