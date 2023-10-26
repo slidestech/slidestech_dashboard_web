@@ -107,7 +107,18 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $validated = $request->validated();
+        $task = Task::findOrFail($id);
+        $task->name = $request->name;
+        $task->status = $request->status;
+        $task->start_date = $request->start_date;
+        $task->end_date = $request->end_date;
+        $task->user_id = $request->user_id;
+        $task->save();
+        return response()->json([
+            'success' => 'Information updated with success',
+            'task' => $task
+        ]);
     }
 
     /**

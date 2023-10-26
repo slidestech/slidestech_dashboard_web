@@ -20,7 +20,7 @@
   }
 </style> --}}
 
-@include('user.navigation')
+@include('superadmin.navigation')
 
 
 @section('page_content')
@@ -31,7 +31,7 @@
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" :title="modal_title">@{{ modal_title }}</h5>
+                        <h5 class="modal-title">@{{ modal_title }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -130,7 +130,7 @@
                                     </div>
                                 </div> --}}
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-12">
                                     <label for="status" class="block">Status <span class="text-danger">
                                             (*)</span></label>
                                     <div :class="[errors.status ? '  input-group input-group-danger' :
@@ -158,8 +158,7 @@
                             v-on:click="add_task()">Save</button>
                         <button v-if="operation=='edit'" type="button" class="btn btn-primary waves-effect waves-light "
                             v-on:click="update_task()">Save</button>
-                        <button type="button" class="btn btn-default waves-effect "
-                            data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -189,7 +188,7 @@
                 <div class="card-block">
 
                     <form class="row" action="#">
-                        <div class="form-group col-sm-3 ">
+                        <div class="form-group col-sm-4 ">
                             {{-- <label for="drivers" class="block">user CNAS</label> --}}
                             <div class="input-group input-group-inverse">
                                 <select id="f-users" class="selectpicker show-tick text-center" title="Select a user.."
@@ -204,7 +203,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
                             {{-- <label for="demo" class="block">Date</label> --}}
                             <div class="input-group input-group-inverse">
                                 <input type="text" id="demo" class="form-control" style="height:41px">
@@ -229,7 +228,7 @@
                             </div>
                         </div> --}}
 
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-4">
 
                             <div class="input-group input-group-inverse">
                                 <select id="f-status" class="selectpicker show-tick text-center" title="Select status.."
@@ -265,22 +264,20 @@
                         <ul class="list-unstyled card-option">
                             <!-- <li v-on:click="calculate_fees_for_all();
                         ">
-                                                                                                                                                                                                                                            <span >
-                                                                                                                                                                                                                                                <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
-                                                                                                                                                                                                                                                    data-placement="top" data-original-title="Decomptes" style="font-size:22px"
-                                                                                                                                                                                                                                                    v-on:click="calculate_fees_for_all();
+                                                                                                                                                                                                                                                                                                                                                                                                    <span >
+                                                                                                                                                                                                                                                                                                                                                                                                        <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
+                                                                                                                                                                                                                                                                                                                                                                                                            data-placement="top" data-original-title="Decomptes" style="font-size:22px"
+                                                                                                                                                                                                                                                                                                                                                                                                            v-on:click="calculate_fees_for_all();
                                     ">
-                                                                                                                                                                                                                                                </i>
-                                                                                                                                                                                                                                            </span>
-                                                                                                                                                                                                                                        </li> -->
-                            <li v-on:click="operation='add';
+                                                                                                                                                                                                                                                                                                                                                                                                        </i>
+                                                                                                                                                                                                                                                                                                                                                                                                    </span>
+                                                                                                                                                                                                                                                                                                                                                                                                </li> -->
+                            <li v-on:click="operation='add';modal_title='Add task';
                         clearInputs()">
                                 <span data-toggle="modal" data-target="#task-modal">
                                     <i class="fa fa-plus faa-horizontal animated text-success " data-toggle="tooltip"
-                                        data-placement="top" data-original-title="Ajouter un bon de sortie"
-                                        style="font-size:22px"
-                                        v-on:click="operation='add';
-                                    clearInputs()">
+                                        data-placement="top" data-original-title="add task"
+                                        v-on:click="operation='add';clearInputs();">
                                     </i>
                                 </span>
                             </li>
@@ -308,7 +305,7 @@
                             <tbody class="">
                                 <tr v-for="(task, index) in tasks">
                                     <td style="width:20px"></td>
-                                    <td class="text-center ">
+                                    <td class="text-center f-14">
                                         <div class="dropdown-secondary dropdown ">
                                             <button
                                                 class="btn btn-inverse btn-mini dropdown-toggle waves-light b-none txt-muted "
@@ -321,7 +318,7 @@
                                                 style="position: absolute; transform: translate3d(0px, -2px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                 <a data-toggle="modal" data-target="#task-modal"
                                                     class="dropdown-item waves-light waves-effect clickable"
-                                                    v-on:click="edit_task(task,index)"><i
+                                                    v-on:click="edit_task(task,index);modal_title='Edit task';"><i
                                                         class="icofont icofont-ui-edit f-18"></i> Edit</a>
                                                 {{-- <a class="dropdown-item waves-light waves-effect clickable" v-on:click="print_task_fr(task)"><i --}}
                                                 <a class="dropdown-item waves-light waves-effect clickable"
@@ -338,25 +335,32 @@
                                         </div>
                                     </td>
 
-                                    <td class="text-center " style="width:auto;vertical-align:middle">
+                                    <td class="text-center f-14" style="width:auto;vertical-align:middle">
                                         @{{ task.user.fullname.toUpperCase() }}
 
                                     </td>
-                                    <td class="text-center " style="width:auto;vertical-align:middle">
+                                    <td class="text-center f-14" style="width:auto;vertical-align:middle">
                                         @{{ task.name.toUpperCase() }}
 
                                     </td>
 
 
                                     </td>
-                                    <td class="text-center " style="vertical-align:middle">
+                                    <td class="text-center f-14" style="vertical-align:middle">
                                         @{{ reFormatDate(task.start_date) }}
                                     </td>
-                                    <td class="text-center " style="vertical-align:middle">
+                                    <td class="text-center f-14" style="vertical-align:middle">
                                         @{{ reFormatDate(task.end_date) }}
                                     </td>
-                                    <td class="text-center " style="vertical-align:middle">
-                                        @{{ task.status }}
+                                    <td class="text-center f-16" style="vertical-align:middle">
+                                        <span v-if=" task.status.toUpperCase()  == 'PENDING'"
+                                            class="label label-warning">@{{ task.status.toString() }}</span>
+
+                                        <span class="label label-success"
+                                            v-else=" task.status.toUpperCase()  == 'COMPLETED'">
+                                            @{{ task.status.toString() }} </span>
+                                    </td>
+
 
 
 
@@ -1160,7 +1164,7 @@
                     app.modal_title = "Edit task";
                     app.user_id = task.user_id;
                     app.status = task.status;
-                    app.end_date = task.end_date;
+                    app.taskContent = task.name;
                     app.start_date = task.start_date;
                     app.end_date = task.end_date;
 
@@ -1173,7 +1177,7 @@
 
                     $('#users').selectpicker('val', task.user_id);
 
-                    $('#status').selectpicker('val', task.status);
+                    $('#status').selectpicker('val', task.status.toUpperCase());
 
 
 
@@ -1256,6 +1260,7 @@
                     app.modal_title = "Edit a task";
 
                     app.end_date = formatDate($('#end_date').data('daterangepicker').startDate);
+                    app.start_date = formatDate($('#start_date').data('daterangepicker').startDate);
 
                     app.user_id = $('#users').selectpicker('val');
                     // app.responsable = $('#responsable').selectpicker('val');
@@ -1279,7 +1284,7 @@
                             'end_date': app.end_date,
                             'start_date': app.start_date,
 
-                            'name': app.name,
+                            'name': app.taskContent,
 
 
                             'status': app.status,
@@ -1288,7 +1293,7 @@
                         .then(function(response) {
 
                             $('#task-modal').modal('hide');
-                            notify('Succès', response.data.success, 'green', 'topCenter', 'bounceInDown');
+                            notify('Success', response.data.success, 'green', 'topCenter', 'bounceInDown');
                             app.fill_table('/getTasks', 'tasks-table');
                             app.clearInputs();
 

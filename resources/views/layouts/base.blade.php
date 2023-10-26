@@ -3,7 +3,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
-    <title>CNAS | Dashboard </title>
+    <title>SLIDESTECH | Dashboard </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -16,7 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="#">
-    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="keywords"
+        content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="#">
     <!-- Favicon icon -->
 
@@ -43,9 +44,11 @@
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
     <!-- Date-time picker css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('pages/advance-elements/css/bootstrap-datetimepicker.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('pages/advance-elements/css/bootstrap-datetimepicker.css') }}">
     <!-- Date-range picker css  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-daterangepicker/css/daterangepicker.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('bower_components/bootstrap-daterangepicker/css/daterangepicker.css') }}">
     <!-- Date-Dropper css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datedropper/css/datedropper.min.css') }}">
     <!-- jquery file upload Frame work -->
@@ -56,11 +59,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/chartist/css/chartist.css') }}" />
 
     <!-- Data Table Css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('pages/data-table/extensions/responsive/css/responsive.dataTables.css') }}" />
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('pages/data-table/extensions/responsive/css/responsive.dataTables.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('pages/nestable/nestable.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('pages/data-table/css/buttons.dataTables.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('pages/j-pro/css/demo.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('pages/j-pro/css/font-awesome.min.css') }}">
@@ -76,7 +82,8 @@
     <!-- Select 2 css -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
     <!-- Multi Select css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/multiselect/css/multi-select.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/component.css') }}">
@@ -200,15 +207,18 @@
                                         <div class="dropdown-toggle " data-toggle="dropdown">
                                             <i class="fa fa-spinner faa-spin animated text-warning f-20" v-if="notifications_fetched==false"></i>
                                             <i class="feather icon-bell " v-else></i>
-                                            <span style="width: 25px" class="badge bg-danger faa-flash animated" v-if="notifications.length!=0 && notifications_fetched==true" >@{{ notifications.length}}</span>
-                                            <span style="width: 25px" class="badge bg-success " v-if="notifications.length==0 && notifications_fetched==true" >@{{ 0}}</span>
+                                            <span style="width: 25px" class="badge bg-danger faa-flash animated" v-if="notifications.length!=0 && notifications_fetched==true" >@{{ notifications.length }}</span>
+                                            <span style="width: 25px" class="badge bg-success " v-if="notifications.length==0 && notifications_fetched==true" >@{{ 0 }}</span>
                                         </div>
                                         {{-- <ul class=" scroll-list wave show-notification notification-view dropdown-menu " v-show="notifications.length!=0"
                                         data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" >
                                         <div style="height: auto;max-height: 280px; overflow-y:auto ">
                                         <li>
                                             <h6>ALERTES</h6>
-                                            <label class="label label-danger">@{{notifications.length.toLocaleString('en-US', {minimumIntegerDigits: 3, useGrouping:false})}} ALERTES</label>
+                                            <label class="label label-danger">@{{ notifications.length.toLocaleString('en-US', {
+    minimumIntegerDigits: 3,
+    useGrouping: false
+}) }} ALERTES</label>
                                         </li>
                                         <li v-on:click="$event.stopPropagation();" v-for="(notification,index) in notifications" style="border:0.5px;border-style:ridge;cursor:default">
                                             <div class="media" v-on:click="" v-if="notification.data.vehicle">
@@ -216,13 +226,11 @@
                                                     <i class="icofont icofont-car-alt-1 f-36 social-icon "></i>
                                                 </span>
                                                 <div class="media-body">
-                                                    <h5 class="notification-user">@{{
-                                                    notification.data.vehicle.model.brand.name+' - '+
-                                                    notification.data.vehicle.model.name+' - '+
-                                                    notification.data.vehicle.licence_plate
-                                                    }}</h5>
-                                                    <p class="notification-msg text-muted ">@{{notification.data.message}}</p>
-                                                    <span class="notification-time label label-danger text-white" v-if="notification.data.deadline">@{{notification.data.deadline}}</span>
+                                                    <h5 class="notification-user">@{{ notification.data.vehicle.model.brand.name + ' - ' +
+    notification.data.vehicle.model.name + ' - ' +
+    notification.data.vehicle.licence_plate }}</h5>
+                                                    <p class="notification-msg text-muted ">@{{ notification.data.message }}</p>
+                                                    <span class="notification-time label label-danger text-white" v-if="notification.data.deadline">@{{ notification.data.deadline }}</span>
                                                 </div>
                                             </div>
                                             <div class="media " v-on:click="" v-if="notification.data.agent">
@@ -230,11 +238,9 @@
                                                     <i class="icofont icofont-waiter f-36 social-icon "></i>
                                                 </span>
                                                 <div class="media-body">
-                                                    <h5 class="notification-user">@{{
-                                                    notification.data.agent.firstname + ' ' +notification.data.agent.lastname 
-                                                   }}</h5>
-                                                    <p class="notification-msg text-muted">@{{notification.data.message}}</p>
-                                                    <span class="notification-time label label-danger text-white" v-if="notification.data.deadline">@{{notification.data.deadline}}</span>
+                                                    <h5 class="notification-user">@{{ notification.data.agent.firstname + ' ' + notification.data.agent.lastname }}</h5>
+                                                    <p class="notification-msg text-muted">@{{ notification.data.message }}</p>
+                                                    <span class="notification-time label label-danger text-white" v-if="notification.data.deadline">@{{ notification.data.deadline }}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -245,11 +251,13 @@
                                 <li class="user-profile header-notification">
                                     <div class="dropdown-primary dropdown" style="width:auto">
                                         <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <img src="{{ asset('images/favicon.ico') }}" class="img-radius" alt="">
+                                            <img src="{{ asset('images/logo-only.png') }}" class="img-radius"
+                                                alt="">
                                             <span> {{ Auth::user()->username }}</span>
                                             <i class="feather icon-chevron-down"></i>
                                         </div>
-                                        <ul class="show-notification profile-notification dropdown-menu " data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                        <ul class="show-notification profile-notification dropdown-menu "
+                                            data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                             <li>
                                                 <a href="user_profile">
                                                     <i class="feather icon-user"></i> Mon profile
@@ -266,11 +274,13 @@
                                             </a>
                                         </li> -->
                                             <li>
-                                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                <a href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                                     <i class="feather icon-log-out"></i> Logout
                                                 </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    style="display: none;">
                                                     @csrf
                                                 </form>
                                             </li>
@@ -297,7 +307,8 @@
                                 <div class="pcoded-navigatio-lavel">Logout</div>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="">
-                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                             <span class="pcoded-micon"><i class="fa fa-power-off"></i></span>
                                             <span class="pcoded-mtext">Logout</span>
@@ -423,17 +434,20 @@
     <!-- Bootstrap date-time-picker js -->
     <script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/moment-range.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ asset('bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('pages/advance-elements/bootstrap-datetimepicker.min.js') }}"></script>
     <!-- Date-range picker js -->
-    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-daterangepicker/js/daterangepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-daterangepicker/js/daterangepicker.js') }}">
+    </script>
     <!-- Date-dropper js -->
     <script type="text/javascript" src="{{ asset('bower_components/datedropper/js/datedropper.min.js') }}"></script>
 
 
     <script type="text/javascript" src="{{ asset('js/jquery-cloneya.min.js') }}"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}">
+    </script>
     <!-- modernizr js -->
     <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
@@ -443,7 +457,8 @@
 
 
 
-    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}">
+    </script>
 
     <script type="text/javascript" src="{{ asset('bower_components/chart.js/js/Chart.js') }}"></script>
 
@@ -490,13 +505,17 @@
 
     <script type="text/javascript" src="{{ asset('pages/toolbar/jquery.toolbar.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}">
+    </script>
+    <script type="text/javascript"
+        src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}">
+    </script>
     <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/select2/js/select2.full.min.js') }}"></script>
 
     <!-- Multiselect js -->
-    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js') }}"></script>
+    <script type="text/javascript"
+        src="{{ asset('bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.quicksearch.js') }}"></script>
     <!-- Custom js -->

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>CNAS | Dashboard</title>
+    <title>SLIDESTECH | Dashboard</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -15,7 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="#">
-    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="keywords"
+        content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="#">
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
@@ -81,7 +82,7 @@
                     <form class="md-float-material form-material" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="text-center">
-                            <img src="{{ asset('images/logo.png') }}" alt="logo.png">
+                            <img src="{{ asset('images/logo-only.png') }}" alt="logo-only.png">
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">
@@ -91,22 +92,26 @@
                                     </div>
                                 </div>
                                 <div class="form-group form-primary">
-                                    <input placeholder="Nom d'utilisateur" id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+                                    <input placeholder="Nom d'utilisateur" id="username" type="text"
+                                        class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
+                                        name="username" value="{{ old('username') }}" required autofocus>
 
                                     @if ($errors->has('username'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('username') }}</strong>
+                                        </span>
                                     @endif
                                     <span class="form-bar"></span>
                                 </div>
                                 <div class="form-group form-primary">
-                                    <input placeholder="Mot de passe" id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                    <input placeholder="Mot de passe" id="password" type="password"
+                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                        name="password" required>
 
                                     @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
                                     @endif
                                     <span class="form-bar"></span>
                                 </div>
@@ -114,8 +119,10 @@
                                     <div class="col-12">
                                         <div class="checkbox-fade fade-in-success d-">
                                             <label>
-                                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check text-primary"></i></span>
+                                                <input class="form-check-input" type="checkbox" name="remember"
+                                                    id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                <span class="cr"><i
+                                                        class="cr-icon icofont icofont-ui-check text-primary"></i></span>
                                                 <span class="text-inverse">Restez connecté</span>
                                             </label>
                                         </div>
@@ -123,7 +130,8 @@
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Connecter</button>
+                                        <button type="submit"
+                                            class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Connecter</button>
                                     </div>
                                 </div>
                                 <hr />
@@ -133,7 +141,8 @@
                                         <p class="text-inverse text-left"><b class="f-w-600">V 1.0.0</b></p>
                                     </div>
                                     <div class="col-md-2">
-                                        <img src="{{ asset('images/auth/Logo-small-bottom.png') }}" alt="Logo-small-bottom.png" style="width: 50px ; height:50px">
+                                        <img src="{{ asset('images/auth/Logo-small-bottom.png') }}"
+                                            alt="Logo-small-bottom.png" style="width: 50px ; height:50px">
                                     </div>
                                 </div>
                             </div>
@@ -197,14 +206,18 @@
     <script type="text/javascript" src="{{ asset('bower_components/popper.js/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}">
+    </script>
     <!-- modernizr js -->
     <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
     <!-- i18next.min.js -->
     <script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}">
+    </script>
+    <script type="text/javascript"
+        src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}">
+    </script>
     <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/common-pages.js') }}"></script>
 
