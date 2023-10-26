@@ -20,7 +20,7 @@
   }
 </style> --}}
 
-@include('superadmin.navigation')
+@include('user.navigation')
 
 
 @section('page_content')
@@ -40,7 +40,7 @@
                         <form>
                             <div class="row" id="add-task-form">
 
-                                <div class="form-group col-md-12 m-t-15">
+                                {{-- <div class="form-group col-md-12 m-t-15">
                                     <label for="-date" class="block">User <span class="text-danger">
                                             (*)</span></label>
                                     <div :class="[errors.user_id ? '  input-group input-group-danger' :
@@ -61,7 +61,7 @@
                                             <i class="icofont icofont-id-card"></i>
                                         </span>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group col-md-12 ">
                                     <label for="name" class="block">Task<span class="text-danger">
@@ -233,8 +233,8 @@
                             <div class="input-group input-group-inverse">
                                 <select id="f-status" class="selectpicker show-tick text-center" title="Select status.."
                                     data-width="100%" data-style="btn-default">
-                                    {{-- <option value="PENDING">PENDING</option>
-                                    <option value="COMPLETED">COMPLETED</option> --}}
+                                    <option value="PENDING">PENDING</option>
+                                    <option value="COMPLETED">COMPLETED</option>
 
                                 </select>
 
@@ -264,14 +264,14 @@
                         <ul class="list-unstyled card-option">
                             <!-- <li v-on:click="calculate_fees_for_all();
                         ">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span >
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        data-placement="top" data-original-title="Decomptes" style="font-size:22px"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        v-on:click="calculate_fees_for_all();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                data-placement="top" data-original-title="Decomptes" style="font-size:22px"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                v-on:click="calculate_fees_for_all();
                                     ">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li> -->
                             <li v-on:click="operation='add';modal_title='Add task';
                         clearInputs()">
                                 <span data-toggle="modal" data-target="#task-modal">
@@ -295,7 +295,6 @@
                                 <tr>
                                     <th></th>
                                     <th class="text-center noExport">ACTION</th>
-                                    <th class="text-center ">USER</th>
                                     <th class="text-center ">TASK</th>
                                     <th class="text-center">START DATE</th>
                                     <th class="text-center">END DATE</th>
@@ -335,10 +334,7 @@
                                         </div>
                                     </td>
 
-                                    <td class="text-center f-14" style="width:auto;vertical-align:middle">
-                                        @{{ task.user.fullname.toUpperCase() }}
 
-                                    </td>
                                     <td class="text-center f-14" style="width:auto;vertical-align:middle">
                                         @{{ task.name.toUpperCase() }}
 
@@ -346,20 +342,19 @@
 
 
 
-                                    <td class="text-center f-16" style="vertical-align:middle">
+                                    <td class="text-center f-14" style="vertical-align:middle">
                                         @{{ reFormatDate(task.start_date) }}
                                     </td>
-                                    <td class="text-center f-16" style="vertical-align:middle">
+                                    <td class="text-center f-14" style="vertical-align:middle">
                                         @{{ reFormatDate(task.end_date) }}
                                     </td>
-
                                     <td class="text-center f-16" style="vertical-align:middle">
-                                        <span
-                                            :class="[task.status.toUpperCase() == 'PENDING' ? 'label label-warning' :
-                                                'label label-success'
-                                            ]">@{{ task.status.toUpperCase() }}</span>
+                                        <span v-if=" task.status.toUpperCase()  == 'PENDING'"
+                                            class="label label-warning">@{{ task.status.toUpperCase() }}</span>
 
-
+                                        <span class="label label-success"
+                                            v-else=" task.status.toUpperCase()  == 'COMPLETED'">
+                                            @{{ task.status.toUpperCase() }} </span>
                                     </td>
 
 
@@ -1017,21 +1012,15 @@
                                     .draw();
                             });
 
-
-
-
-
-                            this.api().columns([6]).every(function() {
+                            this.api().columns([5]).every(function() {
 
                                 var column = this;
 
                                 column.data().unique().sort().each(function(d, j) {
-                                    str = d.split('">');
-                                    $('#f-status').append('<option value="' + str[1]
-                                        .replace('</span>', '') +
+                                    $('#f-status').append('<option value="' +
+                                        d +
                                         '">' +
-                                        str[1].replace('</span>', '') +
-                                        '</option>')
+                                        d + '</option>')
                                 });
                             });
 
@@ -1040,24 +1029,11 @@
                                     $(this).val()
                                 );
 
-                                $("#tasks-table").DataTable().columns([6])
+                                $("#tasks-table").DataTable().columns([5])
                                     .search(val ? '^' + val + '$' : '', true, false)
                                     .draw();
                             });
 
-                            // this.api().columns([6]).every(function() {
-
-                            //     var column = this;
-
-                            //     column.data().unique().sort().each(function(d, j) {
-                            //         str = d.split('">');
-                            //         $('#f-status').append('<option value="' + str[1]
-                            //             .replace('</span>', '') +
-                            //             '">' +
-                            //             str[1].replace('</span>', '') +
-                            //             '</option>')
-                            //     });
-                            // });
 
                             // $('#f-drivers').selectpicker('refresh').on('change', function() {
                             //             var val = $.fn.dataTable.util.escapeRegex(
@@ -1182,7 +1158,7 @@
                     app.selectedtaskIndex = index;
                     app.operation = 'edit';
                     app.modal_title = "Edit task";
-                    app.user_id = task.user_id;
+                    // app.user_id = task.user_id;
                     app.status = task.status;
                     app.taskContent = task.name;
                     app.start_date = task.start_date;
@@ -1220,7 +1196,7 @@
                     app.end_date = formatDate($('#end_date').data('daterangepicker').startDate);
                     app.start_date = formatDate($('#start_date').data('daterangepicker').startDate);
 
-                    app.user_id = $('#users').selectpicker('val');
+                    // app.user_id = $('#users').selectpicker('val');
                     // app.responsable = $('#responsable').selectpicker('val');
 
                     app.status = $('#status').selectpicker('val');
@@ -1233,13 +1209,12 @@
 
                     let formData = new FormData();
 
-                    formData.append('user_id', app.user_id);
+                    // formData.append('user_id', app.user_id);
                     // formData.append('responsable', app.responsable);
                     formData.append('end_date', app.end_date);
                     formData.append('start_date', app.start_date);
-                    formData.append('name', app.name);
-                    formData.append('status', app.status);
                     formData.append('name', app.taskContent);
+                    formData.append('status', app.status);
 
 
                     // formData.append('report_scan', app.report_scan);
@@ -1282,7 +1257,7 @@
                     app.end_date = formatDate($('#end_date').data('daterangepicker').startDate);
                     app.start_date = formatDate($('#start_date').data('daterangepicker').startDate);
 
-                    app.user_id = $('#users').selectpicker('val');
+                    // app.user_id = $('#users').selectpicker('val');
                     // app.responsable = $('#responsable').selectpicker('val');
 
                     app.status = $('#status').selectpicker('val');

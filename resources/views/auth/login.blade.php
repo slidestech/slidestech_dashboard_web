@@ -82,17 +82,17 @@
                     <form class="md-float-material form-material" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="text-center">
-                            <img src="{{ asset('images/logo-only.png') }}" alt="logo-only.png">
+                            <img src="{{ asset('images/logo-only.png') }}" alt="logo-only.png" width="150">
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">
                                 <div class="row m-b-50">
                                     <div class="col-md-12">
-                                        <h3 class="text-center">Identification</h3>
+                                        <h3 class="text-center">Authentication</h3>
                                     </div>
                                 </div>
                                 <div class="form-group form-primary">
-                                    <input placeholder="Nom d'utilisateur" id="username" type="text"
+                                    <input placeholder="Username.." id="username" type="text"
                                         class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
                                         name="username" value="{{ old('username') }}" required autofocus>
 
@@ -104,7 +104,7 @@
                                     <span class="form-bar"></span>
                                 </div>
                                 <div class="form-group form-primary">
-                                    <input placeholder="Mot de passe" id="password" type="password"
+                                    <input placeholder="Password.." id="password" type="password"
                                         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                         name="password" required>
 
@@ -123,7 +123,7 @@
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                 <span class="cr"><i
                                                         class="cr-icon icofont icofont-ui-check text-primary"></i></span>
-                                                <span class="text-inverse">Restez connecté</span>
+                                                <span class="text-inverse">Remember me</span>
                                             </label>
                                         </div>
                                     </div>
@@ -131,18 +131,18 @@
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <button type="submit"
-                                            class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Connecter</button>
+                                            class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Login</button>
                                     </div>
                                 </div>
                                 <hr />
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <p class="text-inverse text-left m-b-0">&copy; CNAS 2022 </p>
+                                        <p class="text-inverse text-left m-b-0">&copy; SLIDESTECH 2023 </p>
                                         <p class="text-inverse text-left"><b class="f-w-600">V 1.0.0</b></p>
                                     </div>
                                     <div class="col-md-2">
-                                        <img src="{{ asset('images/auth/Logo-small-bottom.png') }}"
-                                            alt="Logo-small-bottom.png" style="width: 50px ; height:50px">
+                                        <img src="{{ asset('images/logo-only.png') }}" alt="Logo-small-bottom.png"
+                                            style="width: 50px ; height:50px">
                                     </div>
                                 </div>
                             </div>

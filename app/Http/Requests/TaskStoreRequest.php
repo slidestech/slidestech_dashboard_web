@@ -26,7 +26,7 @@ class TaskStoreRequest extends FormRequest
         return [
             'name' => 'required|min:4|alpha_num',
             'status' => 'required|min:4|alpha_num',
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'end_date' => 'required|min:4',
             'start_date' => 'required|min:4',
         ];

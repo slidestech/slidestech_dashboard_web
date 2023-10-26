@@ -80,8 +80,8 @@ Route::resource('permissions', PermissionController::class);
 
 
 Route::resource('states', StateController::class)->middleware(['auth', 'role_or_permission:admin|superadmin']);
-Route::resource('tasks', TaskController::class)->middleware(['auth', 'role_or_permission:admin|superadmin']);
-Route::get('getTasks', [TaskController::class, 'getTasks'])->name('get-tasks')->middleware(['auth', 'role:superadmin']);
+Route::resource('tasks', TaskController::class)->middleware(['auth', 'role_or_permission:admin|superadmin|user']);
+Route::get('getTasks', [TaskController::class, 'getTasks'])->name('get-tasks')->middleware(['auth', 'role:superadmin|user']);
 
 
 

@@ -31,15 +31,13 @@ class TaskController extends Controller
             return response()
                 ->view('superadmin.tasks_list', $data, 200);
             // return view('superadmin.tasks_list')->with('tasks', 'users');
-        } else {
+        } elseif (auth()->user()->hasRole('user')) {
             $tasks = auth()->user()->tasks()->with('user')->get();
-            $users = User::all();
             $data = [
                 'tasks' => $tasks,
-                'users' => $users
             ];
             return response()
-                ->view('superadmin.tasks_list', $data, 200);
+                ->view('user.tasks_list', $data, 200);
             // return view('superadmin.tasks_list')->with('tasks', 'users');
         }
     }
@@ -68,7 +66,11 @@ class TaskController extends Controller
         $task->status = $request->status;
         $task->start_date = $request->start_date;
         $task->end_date = $request->end_date;
-        $task->user_id = $request->user_id;
+        if (auth()->user()->hasRole('user')) {
+            $task->user_id = auth()->user()->id;
+        } else {
+            $task->user_id = $request->user_id;
+        }
         $task->save();
         return response()->json([
             'success' => 'Information added with success',
@@ -113,7 +115,11 @@ class TaskController extends Controller
         $task->status = $request->status;
         $task->start_date = $request->start_date;
         $task->end_date = $request->end_date;
-        $task->user_id = $request->user_id;
+        if (auth()->user()->hasRole('user')) {
+            $task->user_id = auth()->user()->id;
+        } else {
+            $task->user_id = $request->user_id;
+        }
         $task->save();
         return response()->json([
             'success' => 'Information updated with success',
