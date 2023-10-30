@@ -11,6 +11,8 @@
 |
 */
 
+use App\Events\WebSocketEvent;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
@@ -22,10 +24,32 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\CommuneController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\QuestionController;
+use BeyondCode\LaravelWebSockets\Channels\PresenceChannel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use BeyondCode\LaravelWebSockets\Contracts\ChannelManager;
+
+// use BeyondCode\LaravelWebSockets\WebSockets\Channels\PresenceChannel;
 
 Route::get('/users_list', [UserController::class, 'show'])->name('users-list')->middleware(['auth', 'role:admin|superadmin']);
+Route::get('/sockets', [NotificationController::class, 'sockets'])->name('sockets');
+Route::get('/send-notification', function () {
+    event(new WebSocketEvent('Hello World'));
+    return 'Event Run Successfully.';
+});
+
+Event::listen('my-event', function ($data) {
+    echo $data;
+});
+Route::get('/get-sockets', function () {
+   
+
+
+
+});
+
+
+
 
 
 Auth::routes();

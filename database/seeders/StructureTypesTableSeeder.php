@@ -15,10 +15,10 @@ class StructureTypesTableSeeder extends Seeder
     public function run()
     {
         DB::table('structure_types')->insert([
-            ['id' => 1, 'name' => 'AGENCE', 'created_at' => now(), 'updated_at' => now(),],
-            ['id' => 2, 'name' => 'DIRECTION GENERALE', 'created_at' => now(), 'updated_at' => now(),],
-            ['id' => 3, 'name' => 'ETABLISSEMENT', 'created_at' => now(), 'updated_at' => now(),],
-            ['id' => 4, 'name' => 'AUTRE', 'created_at' => now(), 'updated_at' => now(),],
+            // headquarter
+            ['id' => 1, 'name' => 'HEADQUARTER', 'created_at' => now(), 'updated_at' => now(),],
+            ['id' => 2, 'name' => 'BRANCH', 'created_at' => now(), 'updated_at' => now(),],
+            ['id' => 3, 'name' => 'OTHER', 'created_at' => now(), 'updated_at' => now(),],
         ]);
     }
 }

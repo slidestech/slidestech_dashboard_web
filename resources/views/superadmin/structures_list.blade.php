@@ -39,53 +39,61 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="text"
-                            :class="[errors.name ? 'form-control form-control-danger' : 'form-control form-control-success']"
-                            placeholder="Enter structure name..." maxlength="25" v-model="newStructureName" required
-                            v-on:input="errors.name=null" />
-                        <p class="text-danger m-t-5" v-if="errors.name">@{{ errors.name.toString() }}</p>
-                    </div>
+                        <form>
+                            <div class="row" id="add-task-form">
+                                <input type="text"
+                                    :class="[errors.name ? 'form-control form-control-danger' :
+                                        'form-control form-control-success'
+                                    ]"
+                                    placeholder="Enter structure name..." maxlength="25" v-model="newStructureName" required
+                                    v-on:input="errors.name=null" />
+                                <p class="text-danger m-t-5" v-if="errors.name">@{{ errors.name.toString() }}</p>
+                                <label for="structure-state1" class="col-sm-12 col-form-label">State</label>
+                                <div class="col-sm-12">
+                                    <div :class="[errors.state_id ? 'col-sm-12 m-b-5 input-group input-group-danger' :
+                                        'col-sm-10 m-b-5 input-group input-group-inverse'
+                                    ]"
+                                        data-toggle="tooltip" data-placement="top" :data-original-title="errors.state_id">
+                                        <select id="structure-state1" class="selectpicker show-tick" title="Select State..."
+                                            v-model="newStructureState">
+                                            @foreach ($states as $state)
+                                                <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="input-group-addon">
+                                            <i class="icofont icofont-listing-box"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <label for="structure-state1" class="col-sm-3 col-form-label">State</label>
-                    <div class="col-sm-10">
-                        <div :class="[errors.state_id ? 'col-sm-10 m-b-5 input-group input-group-danger' :
-                            'col-sm-10 m-b-5 input-group input-group-inverse'
-                        ]"
-                            data-toggle="tooltip" data-placement="top" :data-original-title="errors.state_id">
-                            <select id="structure-state1" class="selectpicker show-tick" title="Select State..."
-                                v-model="newStructureState">
-                                @foreach ($states as $state)
-                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
-                                @endforeach
-                            </select>
-                            <span class="input-group-addon">
-                                <i class="icofont icofont-listing-box"></i>
-                            </span>
-                        </div>
-                    </div>
 
-                    <label for="structure-type1" class="col-sm-3 col-form-label">Type</label>
-                    <div class="col-sm-10">
-                        <div :class="[errors.structure_id ? 'col-sm-10 m-b-5 input-group input-group-danger' :
-                            'col-sm-10 m-b-5 input-group input-group-inverse'
-                        ]"
-                            data-toggle="tooltip" data-placement="top" :data-original-title="errors.structure_id">
-                            <select id="structure-type1" class="selectpicker show-tick" title="Select Type..."
-                                v-model="newStructureType">
-                                @foreach ($structureTypes as $structureType)
-                                    <option value="{{ $structureType->id }}">{{ $structureType->name }}</option>
-                                @endforeach
-                            </select>
-                            <span class="input-group-addon">
-                                <i class="icofont icofont-listing-box"></i>
-                            </span>
-                        </div>
+
+                            <label for="structure-type1" class="col-sm-12 col-form-label">Type</label>
+                            <div class="col-sm-12">
+                                <div :class="[errors.structure_id ? 'col-sm-12 m-b-5 input-group input-group-danger' :
+                                    'col-sm-10 m-b-5 input-group input-group-inverse'
+                                ]"
+                                    data-toggle="tooltip" data-placement="top" :data-original-title="errors.structure_id">
+                                    <select id="structure-type1" class="selectpicker show-tick" title="Select Type..."
+                                        v-model="newStructureType">
+                                        @foreach ($structureTypes as $structureType)
+                                            <option value="{{ $structureType->id }}">{{ $structureType->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="input-group-addon">
+                                        <i class="icofont icofont-listing-box"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default waves-effect"
+                                    data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary waves-effect waves-light"
+                                    v-on:click="add_structure()">Save</button>
+                            </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary waves-effect waves-light"
-                            v-on:click="add_structure()">Save</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -106,7 +114,7 @@
                         <p class="text-danger m-t-5" v-if="errors.name">@{{ errors.name.toString() }}</p>
 
                         <label for="structure-state" class="col-sm-3 col-form-label">State</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-12">
                             <div :class="[errors.state_id ? 'col-sm-10 m-b-5 input-group input-group-danger' :
                                 'col-sm-10 m-b-5 input-group input-group-inverse'
                             ]"
@@ -123,7 +131,7 @@
                             </div>
                         </div>
                         <label for="structure-type" class="col-sm-3 col-form-label">Type</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-12">
                             <div :class="[errors.structure_id ? 'col-sm-10 m-b-5 input-group input-group-danger' :
                                 'col-sm-10 m-b-5 input-group input-group-inverse'
                             ]"
@@ -150,7 +158,7 @@
         </div>
     </div>
 
-    <div class="col-md-11">
+    <div class="col-md-12">
 
         <div class="card">
             <div class="card-header table-card-header">

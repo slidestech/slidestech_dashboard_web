@@ -25,7 +25,21 @@
 
 @section('page_content')
     <div class="row ">
-
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-c-yellow text-white">
+                <div class="card-block">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <p class="m-b-5">New Customer</p>
+                            <h4 class="m-b-0">852</h4>
+                        </div>
+                        <div class="col col-auto text-right">
+                            <i class="feather icon-user f-50 text-c-yellow"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="modal fade" id="task-modal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-md" role="document">
@@ -264,14 +278,14 @@
                         <ul class="list-unstyled card-option">
                             <!-- <li v-on:click="calculate_fees_for_all();
                         ">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span >
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                data-placement="top" data-original-title="Decomptes" style="font-size:22px"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                v-on:click="calculate_fees_for_all();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="fa fa-calculator faa-vertical animated text-info " data-toggle="tooltip"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        data-placement="top" data-original-title="Decomptes" style="font-size:22px"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        v-on:click="calculate_fees_for_all();
                                     ">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li> -->
                             <li v-on:click="operation='add';modal_title='Add task';
                         clearInputs()">
                                 <span data-toggle="modal" data-target="#task-modal">
@@ -1084,7 +1098,7 @@
                             "lengthMenu": "Display _MENU_ entries",
                             "loadingRecords": "Loading...",
                             "processing": "Processing...",
-                            "search": "Rechercher:",
+                            "search": "Search:",
                             "zeroRecords": "No matching records found",
                             "paginate": {
                                 "first": "First",
