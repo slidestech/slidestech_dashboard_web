@@ -37,7 +37,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:sanctum');
     }
 
     /**
@@ -306,7 +306,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $this->authorize('delete', $user);
-        if ($user->id !=  Auth::user()->id) {
+        if ($user->id != Auth::user()->id) {
             $user->delete();
             return response()->json([
                 'success' => 'Utilisateur supprimé avec succès!!'
@@ -356,7 +356,8 @@ class UserController extends Controller
             'services',
             'questionCount',
             'questions'
-        ));
+        )
+        );
     }
 
 
