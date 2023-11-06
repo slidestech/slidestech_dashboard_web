@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -36,21 +37,31 @@ class AuthController extends Controller
         $user = User::where('username', $request->username)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'username' => ['The provided credentials are incorrect.'],
+            // throw ValidationException::withMessages([
+            //     'errors' => ['The provided credentials are incorrect.'],
+            // ]);
+            if ($request->wantsJson()) {
+                return response()->json(['errors' => ['The provided credentials are incorrect.']], 422);
+            }
+            return redirect()->back()->withErrors([
+                'login' => 'The provided credentials are incorrect.',
             ]);
         }
         if ($request->wantsJson()) {
             return response()->json(['token' => $user->createToken('API Token')->plainTextToken]);
         }
-        return redirect()->intended('');
+        return redirect()->intended('/');
     }
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        // $request->user()->currentAccessToken()->delete();
+        Auth::user()->currentAccessToken()->delete();
 
-        return response()->json('Logged out');
+        // if ($request->wantsJson()) {
+        //     return response()->json('Logged out');
+        // }
+        // return redirect()->route('user-login');
     }
 
     public function authenticate(Request $request)

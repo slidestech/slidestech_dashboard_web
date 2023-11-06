@@ -73,36 +73,36 @@ Route::delete('/user_delete/{id}', [UserController::class, 'destroy'])->name('us
 Route::get('/getUsers', [UserController::class, 'getUsers'])->name('getUsers')->middleware(['auth:sanctum', 'role:admin|superadmin']);
 
 
-Route::get('/roles_list', [RoleController::class, 'index'])->name('roles-list')->middleware(['auth:sanctum', 'role:superadmin']);
 // Route::get('/services_list', [ServiceController::class, 'index'])->name('services-list')->middleware(['auth:sanctum', 'role:superadmin|admin']);
 
 Route::get('/getRoles', [RoleController::class, 'getRoles'])->name('getRoles')->middleware(['auth:sanctum', 'role:superadmin']);
-Route::get('/getServices', [ServiceController::class, 'getServices'])->name('geServices')->middleware(['auth:sanctum', 'role:superadmin|admin']);
+Route::get('/roles_list', [RoleController::class, 'index'])->name('roles-list')->middleware(['auth:sanctum', 'role:superadmin']);
 Route::post('/role_assign_permissions/{id}', [RoleController::class, 'assignPermissions'])->name('role-assign-permissions')->middleware(['auth:sanctum', 'role:superadmin']);
-
 Route::post('/role_revoke_permission/{id}', [RoleController::class, 'revokePermission'])->name('role-revoke-permissions')->middleware(['auth:sanctum', 'role:superadmin']);
 Route::post('/role_add', [RoleController::class, 'store'])->name('role-add')->middleware(['auth:sanctum', 'role:superadmin']);
-
 Route::put('/role_edit/{id}', [RoleController::class, 'update'])->name('role-update')->middleware(['auth:sanctum', 'role:superadmin']);
-
 Route::delete('/role_delete/{id}', [RoleController::class, 'destroy'])->name('role-delete')->middleware(['auth:sanctum', 'role:superadmin']);
-
 Route::get('/permissions_list', [PermissionController::class, 'index'])->name('permissions-list')->middleware(['auth:sanctum', 'role:superadmin']);
 Route::post('/permission_add', [PermissionController::class, 'store'])->name('permission-add')->middleware(['auth:sanctum', 'role:superadmin']);
-
 Route::put('/permission_edit/{id}', [PermissionController::class, 'update'])->name('permission-update')->middleware(['auth:sanctum', 'role:superadmin']);
-
 Route::delete('/permission_delete/{id}', [PermissionController::class, 'destroy'])->name('permission-delete')->middleware(['auth:sanctum', 'role:superadmin']);
-
 Route::get('/getPermissions', [PermissionController::class, 'getPermissions'])->name('getPermissions')->middleware(['auth:sanctum', 'role:superadmin']);
-
-
-
-
-
-
-
 Route::resource('permissions', PermissionController::class);
+Route::get('/getServices', [ServiceController::class, 'getServices'])->name('geServices')->middleware(['auth:sanctum', 'role:superadmin|admin']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Route::resource('services', ServiceController::class)->middleware(['auth:sanctum', 'role_or_permission:admin|superadmin']);
 
 
@@ -140,7 +140,6 @@ Route::post('/servicesAddQuestion/{id}', [ServiceController::class, 'addQuestion
 Route::get('structures_list', [StructureController::class, 'index'])->name('structures-list')->middleware(['auth:sanctum', 'role:superadmin']);
 Route::resource('structures', StructureController::class)->middleware(['auth:sanctum', 'role_or_permission:admin|superadmin']);
 Route::resource('structuretypes', StructureTypeController::class)->middleware(['auth:sanctum', 'role_or_permission:admin|superadmin']);
-Route::get('states_list', [StateController::class, 'index'])->name('states-list')->middleware(['auth:sanctum', 'role:superadmin']);
 
 Route::get('/getStructures', [StructureController::class, 'getStructures'])->name('getStructures')->middleware(['auth:sanctum', 'role:superadmin']);
 Route::delete('/structure_delete/{id}', [StructureController::class, 'destroy'])->name('structure-delete')->middleware(['auth:sanctum', 'role:superadmin']);
@@ -149,4 +148,5 @@ Route::get('structuretypes_list', [StructureTypeController::class, 'index'])->na
 Route::delete('/structuretype_delete/{id}', [StructureTypeController::class, 'destroy'])->name('structuretype-delete')->middleware(['auth:sanctum', 'role:superadmin']);
 Route::get('/getTypes', [StructureTypeController::class, 'getTypes'])->name('getTypes')->middleware(['auth:sanctum', 'role:superadmin']);
 
+Route::get('states_list', [StateController::class, 'index'])->name('states-list')->middleware(['auth:sanctum', 'role:superadmin']);
 Route::get('/getDocuments/{id}', [QuestionController::class, 'getDocuments'])->name('getDocuments')->middleware(['auth:sanctum', 'role:superadmin|user']);

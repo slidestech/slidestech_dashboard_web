@@ -48,40 +48,42 @@ class UserController extends Controller
     public function index()
     {
 
+        if (Auth::check()) {
+            // $affectation = Affectation::findOrFail(3);
+            // // AGENCE Tiaret/DECISIONS-AFFECTATION/4P47N1Kd0o8poGn5SWgnFkbAkz2kYvRdduUnr8AP.pdf
 
-        // $affectation = Affectation::findOrFail(3);
-        // // AGENCE Tiaret/DECISIONS-AFFECTATION/4P47N1Kd0o8poGn5SWgnFkbAkz2kYvRdduUnr8AP.pdf
+            // unlink(public_path('storage/'."AGENCE Tiaret/DECISIONS-AFFECTATION/4P47N1Kd0o8poGn5SWgnFkbAkz2kYvRdduUnr8AP.pdf"));
+            // if (Auth::user()->hasRole('admin')) {
 
-        // unlink(public_path('storage/'."AGENCE Tiaret/DECISIONS-AFFECTATION/4P47N1Kd0o8poGn5SWgnFkbAkz2kYvRdduUnr8AP.pdf"));
-        // if (Auth::user()->hasRole('admin')) {
+            // return view('admin.home');
+            //} else return 'load the manager home';
+            $authUser = User::find(Auth::user()->id);
+            $role = $authUser->getRoleNames()->first();
 
-        // return view('admin.home');
-        //} else return 'load the manager home';
-        $authUser = User::find(Auth::user()->id);
-        $role = $authUser->getRoleNames()->first();
+            switch ($role) {
+                case 'superadmin':
+                    return view('superadmin.home');
+                    break;
+                case 'user':
+                    //$agents = Agent::where('structure_id',Auth::user()->structure_id)->get();
+                    return view('user.home');
+                    break;
+                case 'admin':
+                    return view('admin.home');
+                    break;
+                case 'responsable_patrimoine':
+                    return view('parc_manager.home');
+                    break;
+                case 'superviseur':
+                    return view('parc_manager.home');
+                    break;
 
-        switch ($role) {
-            case 'superadmin':
-                return view('superadmin.home');
-                break;
-            case 'user':
-                //$agents = Agent::where('structure_id',Auth::user()->structure_id)->get();
-                return view('user.home');
-                break;
-            case 'admin':
-                return view('admin.home');
-                break;
-            case 'responsable_patrimoine':
-                return view('parc_manager.home');
-                break;
-            case 'superviseur':
-                return view('parc_manager.home');
-                break;
-
-            default:
-                # code...
-                break;
-        }
+                default:
+                    # code...
+                    break;
+            }
+        } else
+            return redirect()->route('user-login');
     }
 
     /**
@@ -352,11 +354,13 @@ class UserController extends Controller
         $services = Service::all();
         $questionCount = Question::query()->count();
         $questions = Question::all();
-        return view('user.home', compact(
-            'services',
-            'questionCount',
-            'questions'
-        )
+        return view(
+            'user.home',
+            compact(
+                'services',
+                'questionCount',
+                'questions'
+            )
         );
     }
 

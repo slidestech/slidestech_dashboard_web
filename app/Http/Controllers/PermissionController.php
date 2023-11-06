@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use \Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +13,9 @@ use HasRoles;
 
 class PermissionController extends Controller
 {
-    public function __construct() {
-        $this->middleware(['auth','role:superadmin']);
+    public function __construct()
+    {
+        $this->middleware(['auth', 'role:superadmin']);
     }
 
     /**
@@ -24,7 +26,7 @@ class PermissionController extends Controller
     public function index()
     {
         return view('superadmin.permissions_list');
-        
+
     }
 
     /**
@@ -47,12 +49,12 @@ class PermissionController extends Controller
     {
         $validated = $request->validated();
 
-        $permission = Permission::create(['name'=>$request->name]);
+        $permission = Permission::create(['name' => $request->name]);
 
         return response()->json([
-                'success'=>'Information ajouté avec succès',
-                'permission'=>$permission
-                ]);
+            'success' => 'Information ajouté avec succès',
+            'permission' => $permission
+        ]);
     }
 
     /**
@@ -74,7 +76,7 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-       
+
     }
 
     /**
@@ -95,9 +97,9 @@ class PermissionController extends Controller
         $permission->save();
 
         return response()->json([
-                'success'=>'Information modifée avec succès',
-                'permission'=>$permission
-                ]);
+            'success' => 'Information modifée avec succès',
+            'permission' => $permission
+        ]);
     }
 
     /**
@@ -108,11 +110,14 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        $permission = Permission::findById($id);
-        $permission->delete();
-        
-        return response()->json(['success'=>'La permission a été supprimée avec succés']);
-      
+        try {
+            $permission = Permission::findById($id, 'api');
+            $permission->delete();
+        } catch (PermissionDoesNotExist $e) {
+            return response()->json(['error' => 'No permission with this ID exists'], 404);
+        }
+
+        return response()->json(['success' => 'La permission a été supprimée avec succés']);
     }
 
     public function getPermissions()

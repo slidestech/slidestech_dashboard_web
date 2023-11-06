@@ -93,24 +93,24 @@
                                 </div>
                                 <div class="form-group form-primary">
                                     <input placeholder="Username.." id="username" type="text"
-                                        class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
-                                        name="username" value="{{ old('username') }}" required autofocus>
+                                        class="form-control{{ $errors ==[] ? ' is-invalid' : '' }}" name="username"
+                                        value="{{ old('username') }}" required autofocus>
 
-                                    @if ($errors->has('username'))
+                                    @if ($errors->any())
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('username') }}</strong>
+                                            <strong>{{ $errors->first }}</strong>
                                         </span>
                                     @endif
                                     <span class="form-bar"></span>
                                 </div>
                                 <div class="form-group form-primary">
                                     <input placeholder="Password.." id="password" type="password"
-                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                        name="password" required>
+                                        class="form-control{{ $errors->any() ? ' is-invalid' : '' }}" name="password"
+                                        required>
 
-                                    @if ($errors->has('password'))
+                                    @if ($errors->any())
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('password') }}</strong>
+                                            <strong>{{ $errors->first }}</strong>
                                         </span>
                                     @endif
                                     <span class="form-bar"></span>
